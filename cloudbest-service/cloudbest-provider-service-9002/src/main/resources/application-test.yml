@@ -1,0 +1,19 @@
+server:
+  port: 9002
+
+#server:
+#  port: ${random.int[10000,19999]}  #在yml里面配置随机端口
+
+spring:
+  application:
+    name: cloudbest-provider-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.3.200:8848 #配置Nacos地址
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

@@ -1,0 +1,40 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: cloudbest-consumer-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.3.200:8848 #配置Nacos地址
+
+#设置feign客户端超时时间(OpenFeign默认支持ribbon)
+#ribbon:
+#  #指的是建立连接所用的时间，适用于网络状况正常的情况下,两端连接所用的时间
+#  ReadTimeout: 5000
+#  #指的是建立连接后从服务器读取到可用资源所用的时间
+#  ConnectTimeout: 5000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+feign:
+  hystrix:
+    enabled: true   #开启hystrix
+  client:
+    config:
+      default:
+        #connectTimeout和readTimeout这两个得一起配置才会生效,设置feign客户端超时时间(OpenFeign默认支持ribbon)
+        connectTimeout: 5000
+        readTimeout: 5000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000  #设置全局hystrix超时时间,要大于feign超时时间

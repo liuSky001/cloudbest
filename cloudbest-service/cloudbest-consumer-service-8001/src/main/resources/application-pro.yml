@@ -1,0 +1,15 @@
+server:
+  port: 9101
+spring:
+  application:
+    name: cloudbest-supply-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.5.218:8851,192.168.5.218:8849,192.168.5.218:8850 #配置Nacos集群地址
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
