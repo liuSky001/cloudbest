@@ -27,6 +27,7 @@ public class FeignConsumerController {
 
     @PostMapping("/consumer/add")
     public String addConsumer(@RequestBody String jsonStr){
+
         return feignService.addFeignTest(jsonStr);
     }
 }
